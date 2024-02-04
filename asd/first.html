@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY BIRTHDAAYY</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(45deg, #ebe3e4, #7462ff, #f74eee, #23d5ab);
+            background-size: 300% 300%;
+            animation: color 12s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: row; /* Adjusted to display circles in a row */
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .eye {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 5px rgb(0, 0, 0, 0.2),
+                        inset 0 0 15px #aa4ce0,
+                        inset 0 0 25px #26b3eb;
+            margin: 0 10px; /* Added margin for spacing between circles */
+        }
+        .box .eye::before
+        {
+            content:'';
+            position:absolute;
+            top:50%;
+            left:35px;
+            transform: translate(-50%, -50%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #000;
+            border: 10px solid #1ec1f2;
+            box-sizing: border-box;
+
+        }
+
+        .click-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @keyframes color {
+            0% {
+                background-position: 0 50%;
+            }   
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="eye"></div>
+            <div class="eye"></div>
+        </div>
+        <script>
+
+            document.querySelector('body').addEventListener('mousemove',
+            eyeball);
+            function eyeball(){
+                const eye = document.querySelectorAll('.eye');
+                eye.forEach(function(eye){
+                    let x = (eye.getBoundingClientRect().left)+ (eye.clientWidth / 2);
+                    let y = (eye.getBoundingClientRect().top)+ (eye.clientHeight / 2);
+
+                    let radian =Math.atan2(event.pageX - x, event.pageY - y);
+                    let rotation = (radian * (180 / Math.PI) * -1) + 270;
+                    eye.style.transform = "rotate("+rotation+"deg)"
+
+
+
+                });
+            }
+            
+        </script>
+        <button class="click-button" onclick="redirectToSecondPage()">Click me</button>
+    </div>
+
+    <script>
+        function redirectToSecondPage() {
+            window.location.href = "secondpage.html";
+        }
+    </script>
+</body>
+</html>
